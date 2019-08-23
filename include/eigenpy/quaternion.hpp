@@ -118,7 +118,7 @@ namespace eigenpy
            "Geometrically speaking, the dot product of two unit quaternions corresponds to the cosine of half the angle between the two rotations.")
       .def("_transformVector",&Quaternion::_transformVector,bp::arg("vector"),"Rotation of a vector by a quaternion.")
       .def("vec",&vec,"Returns a vector expression of the imaginary part (x,y,z).")
-      .def("angularDistance",&Quaternion::template angularDistance<Quaternion>,"Returns the angle (in radian) between two rotations.")
+      .def("angularDistance",&angularDistance,"Returns the angle (in radian) between two rotations.")
       .def("slerp",&slerp,bp::args("t","other"),
            "Returns the spherical linear interpolation between the two quaternions *this and other at the parameter t in [0;1].")
 
@@ -215,6 +215,9 @@ namespace eigenpy
     
     static Quaternion slerp(const Quaternion & self, const Scalar t, const Quaternion & other)
     { return self.slerp(t,other); }
+
+    static double angularDistance(const Quaternion & self, const Quaternion & other)
+    { return self.angularDistance(other); }
 
   public:
 
